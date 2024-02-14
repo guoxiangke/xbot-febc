@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XbotHookController;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,18 @@ Route::get('/', function () {
 });
 
 Route::post('/webhook/xbot', XbotHookController::class);
+
+Route::get('/test/tmp', function () {
+    $file = '/tmp/laravel.log';
+    file_put_contents($file, now() . PHP_EOL, FILE_APPEND);
+    Log::error('LOG_TEST', [$file]);
+    return file_get_contents($file);
+});
+
+Route::get('/test/cache', function (){
+    $cacheKey = 'cacheKey';
+    $data = Cache::store('redis')->get($cacheKey, strtotime('tomorrow') - time());
+    Cache::store('redis')->put($cacheKey, $data, strtotime('tomorrow') - time());
+    Log::error('CACHE_TEST', [$cacheKey, $data]);
+    return [$data];
+});
