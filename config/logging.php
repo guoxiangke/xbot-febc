@@ -55,7 +55,7 @@ return [
 
         'vercel' => [
             'driver' => 'single',
-            'path' => storage_path('/tmp/laravel.log'),
+            'path' => '/tmp/laravel.log',
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
