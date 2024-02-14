@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::post('/webhook/xbot', XbotHookController::class);
 
-Route::get('/test/tmp', function () {
+Route::get('/test/log', function () {
     $file = '/tmp/laravel.log';
     file_put_contents($file, now() . PHP_EOL, FILE_APPEND);
     Log::error('LOG_TEST', [$file]);
