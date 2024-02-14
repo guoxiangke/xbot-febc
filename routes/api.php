@@ -18,5 +18,3 @@ use App\Http\Controllers\XbotHookController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('/webhook/xbot', XbotHookController::class);
