@@ -1,5 +1,9 @@
 <?php
 return [
+    'xbot' => [
+        'endpoint' => env('XBOT_ENDPOINT'),
+        'token' => env('XBOT_TOKEN'),
+    ],
 	'group' => [
 		//群转发配置
 		'forward'=>[
