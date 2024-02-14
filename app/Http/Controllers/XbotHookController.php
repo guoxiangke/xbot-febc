@@ -53,22 +53,22 @@ class XbotHookController extends Controller
         return response()->json(null);
     }
 
-    private function send($msg){
-	    // $msg = [
-	    //     'type' => 'text',
-	    //     'to' => $wxid,
-	    //     'data' => [
-	    //         'content' => $content
-	    //     ],
-	    // ];
+    // $msg = [
+    //     'type' => 'text',
+    //     'to' => $wxid,
+    //     'data' => [
+    //         'content' => $content
+    //     ],
+    // ];
 
-	    // $msg = [
-	    //     'type' => 'forward',
-	    //     'to' => $wxid,
-	    //     'data' => [
-	    //         'msgid' => $msgid
-	    //     ],
-	    // ];
+    // $msg = [
+    //     'type' => 'forward',
+    //     'to' => $wxid,
+    //     'data' => [
+    //         'msgid' => $msgid
+    //     ],
+    // ];
+    private function send($msg){
 	    return Http::withToken(config('services.xbot.token'))
 	            ->post(config('services.xbot.endpoint'), $msg);
     }
