@@ -29,7 +29,16 @@ Route::get('/test/log', function () {
     return file_get_contents($file);
 });
 
+Route::get('/test/php', function () {
+    return phpinfo();
+});
+
+Route::get('/test/cwd', function () {
+    return [getcwd(),dirname(__FILE__)];
+});
+
 Route::get('/test/cache', function (){
+    
     $cacheKey = 'cacheKey';
     $data = Cache::get($cacheKey, strtotime('tomorrow') - time());
     Cache::put($cacheKey, $data, strtotime('tomorrow') - time());
