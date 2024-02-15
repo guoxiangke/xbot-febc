@@ -31,8 +31,8 @@ Route::get('/test/log', function () {
 
 Route::get('/test/cache', function (){
     $cacheKey = 'cacheKey';
-    $data = Cache::store('redis')->get($cacheKey, strtotime('tomorrow') - time());
-    Cache::store('redis')->put($cacheKey, $data, strtotime('tomorrow') - time());
+    $data = Cache::get($cacheKey, strtotime('tomorrow') - time());
+    Cache::put($cacheKey, $data, strtotime('tomorrow') - time());
     Log::error('CACHE_TEST', [$cacheKey, $data]);
     return [$data];
 });
