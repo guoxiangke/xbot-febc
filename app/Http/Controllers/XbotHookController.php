@@ -64,9 +64,9 @@ class XbotHookController extends Controller
         return $this->_return();
   
     }
-    
+
     private function send2($msg){
-        return Http::withToken(config('febc.xbot.token'))
+        return Http::withToken(config('febc.xbot.token2'))
                 ->post(config('febc.xbot.endpoint'), $msg);
     }
 
