@@ -45,6 +45,22 @@ class XbotHookController extends Controller
     	}
 
         $keyword = $request['content'];
+
+        
+        $adminGroupWxid = config('febc.group.forward2.from'); //测试群
+        $groupsToForward = config('febc.group.forward2.to');
+        if($isRoom && $wxidOrCurrentRoom == $adminGroupWxid){
+            $msg = [
+                'type' => 'forward',
+                'to' => 'filehelper',
+                'data' => compact('msgid'),
+            ];
+            collect($groupsToForward)->each(function($wxid) use($msg){
+                $msg['to'] = $wxid;
+                $this->send($msg);
+            });
+        }
+
         return $this->_return();
   
     }

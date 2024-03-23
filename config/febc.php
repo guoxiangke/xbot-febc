@@ -10,5 +10,9 @@ return [
 			'from' => env('GROUP_FWD_FROM', '?@chatroom'),
 			'to' => array_map('trim', explode(',', env('GROUP_FWD_TO',''))),
 		],
+		'forward2'=>[
+			'from' => env('GROUP_LU_FROM', '?@chatroom'),
+			'to' => array_map('trim', explode(',', env('GROUP_LU_TO',''))),
+		],
 	],
 ];
