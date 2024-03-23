@@ -46,7 +46,7 @@ class XbotHookController extends Controller
 
         $keyword = $request['content'];
 
-        
+
         $adminGroupWxid = config('febc.group.forward2.from'); //测试群
         $groupsToForward = config('febc.group.forward2.to');
         if($isRoom && $wxidOrCurrentRoom == $adminGroupWxid){
@@ -57,13 +57,19 @@ class XbotHookController extends Controller
             ];
             collect($groupsToForward)->each(function($wxid) use($msg){
                 $msg['to'] = $wxid;
-                $this->send($msg);
+                $this->send2($msg);
             });
         }
 
         return $this->_return();
   
     }
+    
+    private function send2($msg){
+        return Http::withToken(config('febc.xbot.token'))
+                ->post(config('febc.xbot.endpoint'), $msg);
+    }
+
 
     private function _return(){
         return response()->json(null);

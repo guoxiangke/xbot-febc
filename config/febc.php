@@ -3,6 +3,7 @@ return [
     'xbot' => [
         'endpoint' => env('XBOT_ENDPOINT'),
         'token' => env('XBOT_TOKEN'),
+        'token2' => env('XBOT_TOKEN_LU'),
     ],
 	'group' => [
 		//群转发配置
